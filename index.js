@@ -1,3 +1,5 @@
+// HELPER FUNCTIONS ///////////////////////////
+
 // Helper function to get input
 function getUserInput() {
   const input = $("input").val();
@@ -20,6 +22,8 @@ function makeItem() {
         </div>
       </li>`
 }
+
+// Event Handlers //////////////////////////////////
 
 // Handle the submit event and append the output from makeItem
 function handleAddItem() {
