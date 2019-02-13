@@ -69,6 +69,12 @@ function handleCheckItem() {
   $('.shopping-list').on('click', '.shopping-item-toggle', toggleClosestLi)
 }
 
-$(handleDeleteItem);
-$(handleCheckItem);
-$(handleAddItem);
+// function to display the final list with all its functionality after window loads
+function showList() {
+  handleDeleteItem();
+  handleCheckItem();
+  handleAddItem();
+}
+
+$(showList);
+
