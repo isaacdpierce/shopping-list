@@ -27,12 +27,28 @@ function resetInput() {
   $('#js-shopping-list-form')[0].reset(); 
 }
 
+// Dynamically add HTML from the helper function makeItem
+function appendItem() {
+  $('.shopping-list').append(`${makeItem()}`);
+}
+
+// Helper function to prevent default on submit event
+// Then call the appendItem and reset functions
 function handleSubmit(event) {
     event.preventDefault();
-    // Dynamically add HTML from the helper function makeItem
-    $('.shopping-list').append(`${makeItem()}`);
+    appendItem();
     resetInput();
 }
+
+// helper function to delete closest li
+function deleteClosestLi() {
+  $(this).closest('li').remove();
+}
+
+// helper function to toggle the closest (<li></li>) class
+= function toggleClosestLi() {
+  $(this).closest('li').toggleClass('shopping-item__checked');
+};
 
 // Event Handlers //////////////////////////////////
 
@@ -43,10 +59,6 @@ function handleAddItem() {
 
 // Handle the click event on delete button
 function handleDeleteItem() {
-  // helper function to delete closest li
-  const deleteClosestLi = function() {
-    $(this).closest('li').remove();
-  }
   // Event delegation on parent ul
   // delete button on click removes closest (<li>...</li>) including itself
   $('.shopping-list').on('click', '.shopping-item-delete', deleteClosestLi)
@@ -54,10 +66,6 @@ function handleDeleteItem() {
 
 // Handle the click event on the checked button
 function handleCheckItem() {
-  // helper function to toggle the closest (<li></li>) class
-  const toggleClosestLi = function() {
-    $(this).closest('li').toggleClass('shopping-item__checked');
-  };
   $('.shopping-list').on('click', '.shopping-item-toggle', toggleClosestLi)
 }
 
