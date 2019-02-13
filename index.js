@@ -21,6 +21,7 @@ function makeItem() {
       </li>`
 }
 
+// Handle the submit event and append the output from makeItem
 function handleAddItem() {
   $('#js-shopping-list-form').on('submit', function(event) {
     event.preventDefault();
@@ -30,6 +31,7 @@ function handleAddItem() {
   })
 }
 
+// Handle the click event on delete button
 function handleDeleteItem() {
   // Event delegation on parent ul
   // delete button on click removes grandparent (<li>...</li>) including itself
@@ -38,10 +40,12 @@ function handleDeleteItem() {
   })
 }
 
-
+// Handle the click event on the checked button
 function handleCheckItem() {
+  // helper function to toggle the grandparent (<li></li>) class
+  // Then traverse back down to the <span></span> to apply class.
   const toggleGrandparent = function() {
-    $(this).parent().parent().toggleClass('shopping-item__checked');
+    $(this).parent().parent().children('.shopping-item').toggleClass('shopping-item__checked');
   };
   $('.shopping-list').on('click', '.shopping-item-toggle', toggleGrandparent)
 }
