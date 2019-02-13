@@ -23,16 +23,22 @@ function makeItem() {
       </li>`
 }
 
+function resetInput() {
+  $('#js-shopping-list-form')[0].reset(); 
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+    // Dynamically add HTML from the helper function makeItem
+    $('.shopping-list').append(`${makeItem()}`);
+    resetInput();
+}
+
 // Event Handlers //////////////////////////////////
 
 // Handle the submit event and append the output from makeItem
 function handleAddItem() {
-  $('#js-shopping-list-form').on('submit', function(event) {
-    event.preventDefault();
-    // Dynamically add HTML from the helper function makeItem
-    $('.shopping-list').append(`${makeItem()}`);
-    $('#js-shopping-list-form')[0].reset(); 
-  })
+  $('#js-shopping-list-form').on('submit', handleSubmit);
 }
 
 // Handle the click event on delete button
