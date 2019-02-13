@@ -33,21 +33,22 @@ function handleAddItem() {
 
 // Handle the click event on delete button
 function handleDeleteItem() {
+  // helper function to delete closest li
+  const deleteClosestLi = function() {
+    $(this).closest('li').remove();
+  }
   // Event delegation on parent ul
-  // delete button on click removes grandparent (<li>...</li>) including itself
-  $('.shopping-list').on('click', '.shopping-item-delete', function() {
-    $(this).parent().parent().remove();
-  })
+  // delete button on click removes closest (<li>...</li>) including itself
+  $('.shopping-list').on('click', '.shopping-item-delete', deleteClosestLi)
 }
 
 // Handle the click event on the checked button
 function handleCheckItem() {
-  // helper function to toggle the grandparent (<li></li>) class
-  // Then traverse back down to the <span></span> to apply class.
-  const toggleGrandparent = function() {
-    $(this).parent().parent().children('.shopping-item').toggleClass('shopping-item__checked');
+  // helper function to toggle the closest (<li></li>) class
+  const toggleClosestLi = function() {
+    $(this).closest('li').toggleClass('shopping-item__checked');
   };
-  $('.shopping-list').on('click', '.shopping-item-toggle', toggleGrandparent)
+  $('.shopping-list').on('click', '.shopping-item-toggle', toggleClosestLi)
 }
 
 $(handleDeleteItem);
