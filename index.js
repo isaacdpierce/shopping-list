@@ -38,14 +38,14 @@ function handleDeleteItem() {
   })
 }
 
+
 function handleCheckItem() {
-  $('.shopping-item').on('click', function() {
-    console.log(this).text;
-    $(this).addClass('shopping-item__checked');
-  })
+  const toggleGrandparent = function() {
+    $(this).parent().parent().toggleClass('shopping-item__checked');
+  };
+  $('.shopping-list').on('click', '.shopping-item-toggle', toggleGrandparent)
 }
 
 $(handleDeleteItem);
 $(handleCheckItem);
-
 $(handleAddItem);
