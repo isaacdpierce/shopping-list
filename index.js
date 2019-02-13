@@ -46,7 +46,7 @@ function deleteClosestLi() {
 }
 
 // helper function to toggle the closest (<li></li>) class
-= function toggleClosestLi() {
+function toggleClosestLi() {
   $(this).closest('li').toggleClass('shopping-item__checked');
 };
 
