@@ -5,6 +5,7 @@ function getUserInput() {
 }
 
 // Helper function to create my HTML
+// Dynamically add user input from helper function getUserInput
 function makeItem() {
   return  `
       <li>
@@ -23,19 +24,28 @@ function makeItem() {
 function handleAddItem() {
   $('#js-shopping-list-form').on('submit', function(event) {
     event.preventDefault();
-
-    // const newItem = ;
-    
+    // Dynamically add HTML from the helper function makeItem
     $('.shopping-list').append(`${makeItem()}`);
     $('#js-shopping-list-form')[0].reset(); 
   })
 }
 
 function handleDeleteItem() {
-
+  // Event delegation on parent ul
+  // delete button on click removes grandparent (<li>...</li>) including itself
+  $('.shopping-list').on('click', '.shopping-item-delete', function() {
+    $(this).parent().parent().remove();
+  })
 }
 
-// $(handleDeleteItem);
-// $(handleCheckItem);
+function handleCheckItem() {
+  $('.shopping-item').on('click', function() {
+    console.log(this).text;
+    $(this).addClass('shopping-item__checked');
+  })
+}
+
+$(handleDeleteItem);
+$(handleCheckItem);
 
 $(handleAddItem);
